@@ -3,6 +3,7 @@ package com.marcelocovre.course.config;
 import com.marcelocovre.course.entities.Category;
 import com.marcelocovre.course.entities.Order;
 import com.marcelocovre.course.entities.OrderItem;
+import com.marcelocovre.course.entities.Payment;
 import com.marcelocovre.course.entities.Product;
 import com.marcelocovre.course.entities.User;
 import com.marcelocovre.course.entities.enums.OrderStatus;
@@ -79,5 +80,10 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+        Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o2);
+        o2.setPayment(pay1);
+
+        orderRepository.save(o2);
     }
 }
